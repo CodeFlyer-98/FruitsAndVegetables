@@ -9,7 +9,9 @@ from .models import (
 from product.models import (
     Product,
 )
-
+admin.site.site_header='Organi Administration'
+admin.site.site_title='Administration'
+admin.site.index_title='Organi'
 
 @admin.register(Cart)
 class CartView(admin.ModelAdmin):
