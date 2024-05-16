@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2024 at 02:27 PM
+-- Generation Time: May 16, 2024 at 12:28 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -148,8 +148,8 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$720000$ZFcnWTibxHjhUoQ47DgsRs$suk6NVdBBJZjypFW07ndMcWo85IW5gyiWPlUyINax2U=', '2024-04-20 10:37:35.318636', 1, 'admin', '', '', 'admin@gmail.com', 1, 1, '2024-04-19 09:59:57.729752'),
-(2, 'pbkdf2_sha256$720000$hq88SL92oTvzArPpSOhFgc$FgwIed3nQSOG7PXwsOh9yP5EvLu6jcnUPrgf6LQ2isk=', '2024-04-20 08:33:38.884107', 0, 'Hustler', 'Jash', 'Kothari', 'jashkothari@gmail.com', 0, 1, '2024-04-19 10:43:22.819548'),
+(1, 'pbkdf2_sha256$720000$ZFcnWTibxHjhUoQ47DgsRs$suk6NVdBBJZjypFW07ndMcWo85IW5gyiWPlUyINax2U=', '2024-05-12 16:13:29.068327', 1, 'admin', '', '', 'admin@gmail.com', 1, 1, '2024-04-19 09:59:57.729752'),
+(2, 'pbkdf2_sha256$720000$hq88SL92oTvzArPpSOhFgc$FgwIed3nQSOG7PXwsOh9yP5EvLu6jcnUPrgf6LQ2isk=', '2024-05-12 10:24:28.546980', 0, 'Hustler', 'Jash', 'Kothari', 'jashkothari@gmail.com', 0, 1, '2024-04-19 10:43:22.819548'),
 (3, 'pbkdf2_sha256$720000$RkfWMgdTlPBHdKGhcoDUwt$IlrQvMclqhYJ646YHDHIlegFXHEv3GJtttxZLVuyUAs=', '2024-04-20 12:01:54.738809', 0, 'Aditya_1982', 'Aditya', 'Kapoor', 'adityakapoor@gmail.com', 0, 1, '2024-04-20 12:01:26.886482');
 
 -- --------------------------------------------------------
@@ -208,7 +208,8 @@ CREATE TABLE `core_address` (
 --
 
 INSERT INTO `core_address` (`id`, `phone1`, `phone2`, `address`, `country`, `state`, `city`, `postal`, `address_type`, `user_id`) VALUES
-(1, '8547632101', '9875698321', '66 Moore Avenue, Near Regent Square', 'India', 'Maharashtra', 'Mumbai', '400065', 'Apartment', 3);
+(1, '8547632101', '9875698321', '66 Moore Avenue, Near Regent Square', 'India', 'Maharashtra', 'Mumbai', '400065', 'Apartment', 3),
+(2, '8754231569', '985621479', '99/1Naresh Mitra Sarani', 'India', 'West Bengal', 'Kolkata', '700026', 'Home', 2);
 
 -- --------------------------------------------------------
 
@@ -229,7 +230,8 @@ INSERT INTO `core_cart` (`id`, `user_id`) VALUES
 (1, 1),
 (2, 3),
 (3, 4),
-(4, 5);
+(4, 5),
+(5, 2);
 
 -- --------------------------------------------------------
 
@@ -249,8 +251,7 @@ CREATE TABLE `core_cartitem` (
 --
 
 INSERT INTO `core_cartitem` (`id`, `quantity`, `cart_id`, `product_id`) VALUES
-(1, 1, 1, 1),
-(3, 1, 2, 7);
+(1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -277,7 +278,11 @@ INSERT INTO `core_order` (`id`, `payment_status`, `user_id`, `order_amount`, `or
 (1, '', 3, 0, NULL, 'order_O0rxosEefwCiGI', NULL, NULL),
 (2, '', 3, 0, NULL, 'order_O0ryPaJd8Uif1E', NULL, NULL),
 (3, 'paid', 3, 40, NULL, 'order_O0s2O5HaKaUN0H', NULL, NULL),
-(4, '', 3, 0, NULL, 'order_O0s6zpqMnjOdyu', NULL, NULL);
+(4, '', 3, 0, NULL, 'order_O0s6zpqMnjOdyu', NULL, NULL),
+(5, 'paid', 3, 25, NULL, 'order_O0wkTtTYDCpRSn', NULL, NULL),
+(6, '', 2, 0, NULL, 'order_O1DDg4PttCPofq', NULL, NULL),
+(7, 'paid', 2, 40, NULL, 'order_O1DF2mtd1CUpC0', NULL, NULL),
+(8, 'paid', 2, 30, NULL, 'order_O9Y4yHyGQbqDY6', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -299,7 +304,10 @@ CREATE TABLE `core_orderedproduct` (
 --
 
 INSERT INTO `core_orderedproduct` (`id`, `quantity`, `order_id`, `product_id`, `order_date`, `user_id`) VALUES
-(1, 2, 3, 4, '2024-04-20', 3);
+(1, 2, 3, 4, '2024-04-20', 3),
+(2, 1, 5, 7, '2024-04-20', 3),
+(3, 2, 7, 4, '2024-04-21', 2),
+(4, 2, 8, 5, '2024-05-12', 2);
 
 -- --------------------------------------------------------
 
@@ -342,7 +350,10 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`,
 (17, '2024-04-20 11:28:59.947729', '6', 'Spinach', 1, '[{\"added\": {}}]', 12, 1),
 (18, '2024-04-20 11:44:10.820787', '7', 'Organic Tomato', 1, '[{\"added\": {}}]', 12, 1),
 (19, '2024-04-20 11:46:41.426185', '8', 'Organic Carrot', 1, '[{\"added\": {}}]', 12, 1),
-(20, '2024-04-20 11:58:00.910764', '9', 'Organic Potato', 1, '[{\"added\": {}}]', 12, 1);
+(20, '2024-04-20 11:58:00.910764', '9', 'Organic Potato', 1, '[{\"added\": {}}]', 12, 1),
+(21, '2024-04-21 08:41:30.473480', '10', 'Nuts And Seeds', 2, '[{\"changed\": {\"fields\": [\"Category Image\"]}}]', 9, 1),
+(22, '2024-05-12 17:09:06.952695', '6', 'Extra Large', 1, '[{\"added\": {}}]', 10, 1),
+(23, '2024-05-12 17:09:28.983208', '6', 'Extra Large', 3, '', 10, 1);
 
 -- --------------------------------------------------------
 
@@ -407,8 +418,7 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('tu9za3rtyvfan4ieac8z0fgduk0xkuz5', '.eJxVjEEOwiAQRe_C2pBSRtpx6d4zkIEZpGogKe3KeHdD0oVu_3vvv5Wnfct-b7L6hdVFGXX63QLFp5QO-EHlXnWsZVuXoLuiD9r0rbK8rof7d5Cp5V5DMhgcugHmhAJkkHCKFKwlISswRHFo05kAYTIjcKJAjE5m60YG9fkC7y84QQ:1rxl4h:DBiyLF7X6L5o5b-c-PePrqEWsFZ2ix1lP6ojFqhh36Y', '2024-05-03 10:02:31.781188'),
-('2f3rjky5jy1ce2b25a9vh9x8mt0qhwnb', '.eJxVjEEOwiAQRe_C2pA60AFcuvcMZIYBqZo2Ke3KeHfbpAvd_vfef6tI61Lj2vIcB1EXZdTpd2NKzzzuQB403iedpnGZB9a7og_a9G2S_Loe7t9BpVa3OhToLGYr54wgYL1hQIbABAG8MJDxgdA5KRiwFIOhl83qE6OjDtXnC9FgN14:1ry9Pm:rQF01CtpoHkrTZmUo5PH1xyzwUuDR2jdho0o-iVtyLk', '2024-05-04 12:01:54.747060');
+('tu9za3rtyvfan4ieac8z0fgduk0xkuz5', '.eJxVjEEOwiAQRe_C2pBSRtpx6d4zkIEZpGogKe3KeHdD0oVu_3vvv5Wnfct-b7L6hdVFGXX63QLFp5QO-EHlXnWsZVuXoLuiD9r0rbK8rof7d5Cp5V5DMhgcugHmhAJkkHCKFKwlISswRHFo05kAYTIjcKJAjE5m60YG9fkC7y84QQ:1rxl4h:DBiyLF7X6L5o5b-c-PePrqEWsFZ2ix1lP6ojFqhh36Y', '2024-05-03 10:02:31.781188');
 
 -- --------------------------------------------------------
 
@@ -439,7 +449,7 @@ INSERT INTO `product_category` (`id`, `category_name`, `category_slug`, `categor
 (7, 'Dried Fruits And Vegetables', 'dried-fruits-and-vegetables', 'Category_Images/DriedFruitsandVegetables_xmru3g8.jpg', 'Experience nature\'s sweetness in a convenient form with our dried fruits and vegetables. Bursting with flavor and nutrition, our carefully dehydrated produce offers a deliciously satisfying snack for any occasion. From the chewy sweetness of dried apricots to the tangy zest of sun-dried tomatoes, our selection captures the essence of freshness in every bite. Perfect for on-the-go snacking or adding a burst of flavor to your favorite recipes, our dried fruits and vegetables are a versatile and wholesome choice. Indulge in the natural goodness of our dried produce and elevate your snacking experience with every delicious mouthful.', '2024-04-20'),
 (8, 'Fresh Juices', 'fresh-juices', 'Category_Images/glass-fresh-fruit-juice_9PFise6_q9Be79Y.jpg', 'Revitalize your day with the refreshing taste of our fresh juices. Bursting with vibrant flavors and packed with essential vitamins and nutrients, each sip is a celebration of health and vitality. From the zesty tang of freshly squeezed orange juice to the invigorating blend of green smoothies, our selection offers a deliciously wholesome option for every palate. Sourced from the finest fruits and vegetables, our juices are pressed to perfection to preserve their natural goodness and flavor. Whether you\'re starting your morning on a refreshing note or replenishing after a workout, our fresh juices are the perfect choice for a nourishing pick-me-up. Elevate your hydration routine with our premium selection of fresh juices and experience the taste of pure vitality with every sip', '2024-04-20'),
 (9, 'Speciality Products', 'speciality-products', 'Category_Images/SpecialityProducts.jpg', 'Indulge in the delightful taste of our specialty fruit jams, crafted with care to capture the essence of ripe, juicy fruits. Each jar is brimming with luscious flavor and homemade charm, perfect for spreading on toast, topping desserts, or adding a sweet twist to your favorite recipes. Made from hand-selected fruits at their peak ripeness, our jams are lovingly cooked in small batches to preserve their natural sweetness and vibrant taste. Treat yourself to a spoonful of pure indulgence with our premium fruit jams, and elevate every meal with a burst of fruity goodness.', '2024-04-20'),
-(10, 'Nuts And Seeds', 'nuts-and-seeds', 'Category_Images/NutsAndSeeds.jpg', 'Discover the wholesome goodness of our premium nuts and seeds, nature\'s perfect snack packed with flavor and nutrition. From the satisfying crunch of almonds to the creamy richness of walnuts, our selection offers a variety of textures and tastes to satisfy every craving. Rich in protein, fiber, and healthy fats, our nuts and seeds make a nutritious addition to your daily routine, whether enjoyed on their own, sprinkled over salads, or incorporated into your favorite recipes. Sourced from trusted growers and carefully roasted to perfection, our nuts and seeds are the ideal choice for a deliciously wholesome snack that nourishes your body and delights your taste buds. Elevate your snacking experience with our premium selection of nuts and seeds and savor the natural goodness of nature\'s bounty with every bite.', '2024-04-20');
+(10, 'Nuts And Seeds', 'nuts-and-seeds', 'Category_Images/nuts-walnut-peanuts-almond-seeds_gmDdW45_o7y7cE0.jpg', 'Discover the wholesome goodness of our premium nuts and seeds, nature\'s perfect snack packed with flavor and nutrition. From the satisfying crunch of almonds to the creamy richness of walnuts, our selection offers a variety of textures and tastes to satisfy every craving. Rich in protein, fiber, and healthy fats, our nuts and seeds make a nutritious addition to your daily routine, whether enjoyed on their own, sprinkled over salads, or incorporated into your favorite recipes. Sourced from trusted growers and carefully roasted to perfection, our nuts and seeds are the ideal choice for a deliciously wholesome snack that nourishes your body and delights your taste buds. Elevate your snacking experience with our premium selection of nuts and seeds and savor the natural goodness of nature\'s bounty with every bite.', '2024-04-21');
 
 -- --------------------------------------------------------
 
@@ -673,37 +683,37 @@ ALTER TABLE `auth_user_groups`
 -- AUTO_INCREMENT for table `core_address`
 --
 ALTER TABLE `core_address`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `core_cart`
 --
 ALTER TABLE `core_cart`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `core_cartitem`
 --
 ALTER TABLE `core_cartitem`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `core_order`
 --
 ALTER TABLE `core_order`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `core_orderedproduct`
 --
 ALTER TABLE `core_orderedproduct`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
@@ -727,7 +737,7 @@ ALTER TABLE `product_product`
 -- AUTO_INCREMENT for table `product_quantity`
 --
 ALTER TABLE `product_quantity`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `product_size`

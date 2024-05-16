@@ -18,6 +18,9 @@ class Category(models.Model):
                                        blank=True)
     category_desc = models.TextField(verbose_name='Category Description')
     category_created_at = models.DateField(auto_now=True)
+    class Meta:
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
 
     def save(self, *args, **kwargs):
         self.category_slug = slugify(self.category_name)
@@ -32,6 +35,10 @@ class Quantity(models.Model):
     quantity_name = models.CharField(max_length=100, unique=True)
     quantity_desc = models.CharField(max_length=250, blank=True)
     quantity_created_at = models.DateField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Quantities'
+        verbose_name_plural = 'Quantity'
 
     def __str__(self):
         return self.quantity_name
